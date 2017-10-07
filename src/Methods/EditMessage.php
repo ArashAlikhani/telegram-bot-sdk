@@ -119,4 +119,34 @@ trait EditMessage
 
         return new Message($response->getDecodedBody());
     }
+
+    /**
+     * Delete text messages sent by the bot or via the bot (for inline bots).
+     *
+     * <code>
+     * $params = [
+     *   'chat_id'                  => '',
+     *   'message_id'               => '',
+     * ];
+     * </code>
+     *
+     * @link https://core.telegram.org/bots/api#deletemessage
+     *
+     * @param array $params [
+     *
+     * @var int|string $chat_id                  Optional. Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @var int        $message_id               Optional. Required if inline_message_id is not specified. Identifier of the sent message
+     *
+     * ]
+     *
+     * @throws TelegramSDKException
+     *
+     * @return Message|bool
+     */
+    public function deleteMessage(array $params)
+    {
+        $response = $this->post('deleteMessage', $params);
+
+        return new Message($response->getDecodedBody());
+    }
 }
